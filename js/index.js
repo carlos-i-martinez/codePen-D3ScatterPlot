@@ -7,7 +7,7 @@ d3.json(url2).then(function(json) {
     //load year and time
     const dataset2 =[];
     json.forEach(function(d) {
-        dataset2.push([d3.timeParse("%Y")(d.Year),d3.timeParse("%M:%S")(d.Time)]);
+        dataset2.push([d3.timeParse("%Y")(d.Year),d3.timeParse("%M:%S")(d.Time),d.Name,d.Doping]);
     });
 
     //width and height of the plot.
@@ -56,7 +56,10 @@ d3.json(url2).then(function(json) {
             //alert(d[0])
             myTool.transition().duration(200).style('opacity', 0.9);
             myTool
-              .html("<strong>Year: </strong> "+d[0].getFullYear()+"<strong> Time: </strong> "+d[1].getMinutes()+":"+ d[1].getSeconds())
+              .html("<table><tbody><tr><td><strong>Year: </strong> "+d[0].getFullYear()+"</td></tr>"
+                   +"<tr><td><strong>Time: </strong> "+d[1].getMinutes()+":"+ d[1].getSeconds()+'</td></tr>'
+                   +'<tr><td><strong>Name: </strong>'+d[2]+'</td></tr>'
+                   +'<tr><td><strong>Doping: </strong>'+d[3]+'</td></tr></tbody></table>')
               .attr("data-year", dataset2[i][0])
               .style("left", d3.event.pageX + 10 + "px")
               .style("top", d3.event.pageY + 1 + "px")
@@ -95,11 +98,4 @@ svgC.append("text")
     .attr("dy", ".5em")
     .attr("transform", "rotate(-90)")
     .text("Time (min:sec)");  
-  
-  //add a legend
-    svgC.append("text")
-      .attr("id","legend")
-      .attr("transform","translate(" + (w-padding - 200) + " ," + (h/2) + ")")
-      .text("Cycling Data for Doping Cases");
-
 });

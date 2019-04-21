@@ -2,6 +2,9 @@
   font-size: 35px;
   text-align: center
 }
+#legend {
+  text-align: center;
+}
 #visual {
   text-align: center;
 }
@@ -15,9 +18,9 @@ display: flex;
   position: absolute;
   text-align: center;
   width: 250px;
-  height: 50px;
+  height: 150px;
   padding: 2px;
-  font: 12px;
+  font: 10px;
   background: lightsteelblue;
   box-shadow: 1px 1px 10px;
   border-radius: 2px;
